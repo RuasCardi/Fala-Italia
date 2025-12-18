@@ -58,7 +58,7 @@ const useUserStore = create<UserState>()(
         set({ user: newUser, lastStudyDate: new Date().toISOString().split('T')[0] });
       },
 
-      completeLesson: (lessonId: string, xpEarned: number, perfectScore: boolean) => {
+      completeLesson: (lessonId: string, xpEarned: number) => {
         const state = get();
         if (!state.user) return;
 

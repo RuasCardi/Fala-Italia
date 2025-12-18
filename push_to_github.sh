@@ -9,8 +9,9 @@ fi
 git add .
 git commit -m "Initial commit"
 
-# Adiciona o repositório remoto (ignora erro se já existir)
-git remote add origin https://github.com/RuasCardi/Fala-Italia.git 2>/dev/null
+# Remove o remoto antigo se existir e adiciona o correto
+git remote remove origin 2>/dev/null
+git remote add origin https://github.com/RuasCardi/Fala-Italia.git
 
 # Define a branch principal como main
 git branch -M main

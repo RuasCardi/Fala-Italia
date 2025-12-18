@@ -1,32 +1,31 @@
 // AI service using OpenAI SDK for exercise generation, feedback, and chat tutor
-import { Configuration, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
 
-const configuration = new Configuration({
+const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
-const openai = new OpenAIApi(configuration);
 
 export const aiService = {
-    generateExercise: async (prompt) => {
-        const response = await openai.createCompletion({
+    generateExercise: async (prompt: string): Promise<string | undefined> => {
+        const response = await openai.completions.create({
             model: 'text-davinci-003',
             prompt,
         });
-        return response.data.choices[0].text;
+        return response.choices[0]?.text;
     },
-    getFeedback: async (input) => {
+    getFeedback: async (input: string): Promise<string | undefined> => {
         const feedbackPrompt = `Provide feedback on: ${input}`;
-        const response = await openai.createCompletion({
+        const response = await openai.completions.create({
             model: 'text-davinci-003',
             prompt: feedbackPrompt,
         });
-        return response.data.choices[0].text;
+        return response.choices[0]?.text;
     },
-    chatTutor: async (query) => {
-        const response = await openai.createCompletion({
+    chatTutor: async (query: string): Promise<string | undefined> => {
+        const response = await openai.completions.create({
             model: 'text-davinci-003',
             prompt: query,
         });
-        return response.data.choices[0].text;
+        return response.choices[0]?.text;
     }
 };

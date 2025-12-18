@@ -10,7 +10,7 @@ export default function LessonPage() {
   const { id } = useParams()
   const navigate = useNavigate()
   const lesson = id ? lessons[id] : null
-  const { completeLesson, user } = useUserStore()
+  const { completeLesson } = useUserStore()
   
   const [currentIndex, setCurrentIndex] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
